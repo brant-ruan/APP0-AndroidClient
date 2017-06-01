@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_height="match_parent"
+              android:layout_width="match_parent"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username_hint"
+        android:id="@+id/signup_username_edit_text"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_hint"
+        android:id="@+id/signup_password_edit_text"
+        android:inputType="textPassword"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_dup_hint"
+        android:id="@+id/signup_password_dup_edit_text"
+        android:inputType="textPassword"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signup_button"
+            android:id="@+id/signup_real_button"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signup_cancel_button"
+            android:id="@+id/signup_cancel_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>

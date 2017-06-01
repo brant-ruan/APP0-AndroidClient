@@ -2,7 +2,10 @@
     <string name="app_name">SimpleClient</string>
     <string name="username_hint">用户名</string>
     <string name="password_hint">密码</string>
+    <string name="password_dup_hint">再次确认密码</string>
     <string name="login_button">登录</string>
     <string name="signup_button">注册</string>
-    <string name="scan_button">扫码(测试)</string>
+    <string name="scan_button">扫码</string>
+    <string name="logout_button">注销</string>
+    <string name="signup_cancel_button">取消</string>
 </resources>

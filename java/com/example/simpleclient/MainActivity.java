@@ -1,5 +1,6 @@
 package com.example.simpleclient;
 
+import android.app.Application;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,16 +11,26 @@ import android.widget.Toast;
 
 import com.xys.libzxing.zxing.activity.CaptureActivity;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+
+import javax.security.auth.login.LoginException;
+
+import com.example.simpleclient.ApplicationUtil;
+import com.example.simpleclient.LoggedInActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private String mUsername;
     private String mPassword;
-    private String mToken;
+    private String mEnPassword; // password md5
+    private byte[] mSendBuf;
+    private byte[] mRecvBuf;
 
     private Button mLogInButton;
     private Button mSignUpButton;
-    private Button mScanButton;
-
     private EditText mUsernameEditText;
     private EditText mPasswordEditText;
 
@@ -38,6 +49,29 @@ public class MainActivity extends AppCompatActivity {
                 mUsername = mUsernameEditText.getText().toString();
                 mPassword = mPasswordEditText.getText().toString();
 
+                if(LoginCheck(mUsername, mPassword) == true){
+                    // if logging in successful, then go into LoggedInActivity
+                    Intent i = LoggedInActivity.newIntent(MainActivity.this, mUsername, mEnPassword);
+                    startActivity(i);
+                    MainActivity.this.finish();
+                }
+                Socket socket;
+                DataOutputStream dos;
+                DataInputStream dis;
+                ApplicationUtil appUtil1 = (ApplicationUtil)MainActivity.this.getApplication();
+                try{
+                    appUtil1.init();
+                    socket = appUtil1.getSocket();
+                    dos = appUtil1.getDos();
+                    dis = appUtil1.getDis();
+                }
+                catch(IOException ioex){
+                    ioex.printStackTrace();
+                }
+                catch(Exception ex){
+                    ex.printStackTrace();
+                }
+
             }
         });
 
@@ -45,31 +79,16 @@ public class MainActivity extends AppCompatActivity {
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-            }
-        });
-        // scan qr-code
-        mScanButton = (Button)findViewById(R.id.scan_button);
-        mScanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class), 0);
+                // Start SignUp Activity
+                Intent i = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(i);
+                MainActivity.this.finish();
             }
         });
     }
-    // to receive the result of qr-code
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
-            Bundle bundle = data.getExtras();
-            mToken = bundle.getString("result");
-            Toast.makeText(MainActivity.this, mToken, Toast.LENGTH_SHORT).show();
 
-        }
-        if(resultCode == RESULT_CANCELED){
-            mToken = "";
-            Toast.makeText(MainActivity.this, "Error occurs", Toast.LENGTH_SHORT).show();
-        }
+    public boolean LoginCheck(String username, String password){
+
+        return true;
     }
 }
