@@ -6,8 +6,8 @@ package com.example.simpleclient;
 
 public class MyAccount {
 
-    public static boolean IsAccountValid(String username, String password){
-
+    public static boolean IsAccountValid(String username, String password) {
+        // remain to be completed
         return true;
     }
 

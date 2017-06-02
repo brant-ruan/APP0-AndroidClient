@@ -9,25 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username_hint"
-        android:id="@+id/signup_username_edit_text"/>
+        android:id="@+id/signup_username_edit_text"
+        android:maxLength="12"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password_hint"
         android:id="@+id/signup_password_edit_text"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:maxLength="16"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password_dup_hint"
         android:id="@+id/signup_password_dup_edit_text"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:maxLength="16"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="30dp">
 
         <Button
             android:layout_width="wrap_content"

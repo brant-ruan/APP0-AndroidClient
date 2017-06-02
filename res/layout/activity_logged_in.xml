@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/login_prompt_text_view"
-        android:padding="24dp"/>
+        android:padding="60dp"/>
 
     <Button
         android:layout_width="wrap_content"
